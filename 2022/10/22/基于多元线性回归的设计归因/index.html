@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+    <title>基于多元线性回归的设计归因 | Design &amp; Latte</title>
+
+    <meta name="description" content="&lt;p&gt;无论体验度量还是设计价值的评估，体验设计界自来面临一个棘手的“归因问题”：设计的贡献值是多少？某因素对整体体验的影响程度如何？&lt;br&gt;由于比对的多个事物间仅被“定性”的判断为具有某种因果关系，难以量化且表述出固定的关系，这一直阻碍着体验设计领域的科学发展。多元线性回归分析是基本的统计学方法，一直在用研中活跃，但由于设计师外包了研究工作给用研，较少了解到多元线性回归方法可以用到体验设计的量化归因上。">
+    <meta name="keywords" content="">
+
+    
+
+    <meta property="og:locale" content="en" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content= "基于多元线性回归的设计归因 | Design &amp; Latte"  />
+    <meta property="og:description" content= "&lt;p&gt;无论体验度量还是设计价值的评估，体验设计界自来面临一个棘手的“归因问题”：设计的贡献值是多少？某因素对整体体验的影响程度如何？&lt;br&gt;由于比对的多个事物间仅被“定性”的判断为具有某种因果关系，难以量化且表述出固定的关系，这一直阻碍着体验设计领域的科学发展。多元线性回归分析是基本的统计学方法，一直在用研中活跃，但由于设计师外包了研究工作给用研，较少了解到多元线性回归方法可以用到体验设计的量化归因上。" />
+    <meta property="og:url" content="http://example.com/2022/10/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%BD%92%E5%9B%A0/index.html" />
+    <meta property="og:site_name" content="" />
+    <meta property="article:author" content="璞成" />
+    <meta property="article:publisher" content="" />
+    <meta property="og:description" content="&lt;p&gt;无论体验度量还是设计价值的评估，体验设计界自来面临一个棘手的“归因问题”：设计的贡献值是多少？某因素对整体体验的影响程度如何？&lt;br&gt;由于比对的多个事物间仅被“定性”的判断为具有某种因果关系，难以量化且表述出固定的关系，这一直阻碍着体验设计领域的科学发展。多元线性回归分析是基本的统计学方法，一直在用研中活跃，但由于设计师外包了研究工作给用研，较少了解到多元线性回归方法可以用到体验设计的量化归因上。" />
+    <meta name="twitter:title" content="基于多元线性回归的设计归因 | Design &amp; Latte"/>
+    <meta name="twitter:description" content="&lt;p&gt;无论体验度量还是设计价值的评估，体验设计界自来面临一个棘手的“归因问题”：设计的贡献值是多少？某因素对整体体验的影响程度如何？&lt;br&gt;由于比对的多个事物间仅被“定性”的判断为具有某种因果关系，难以量化且表述出固定的关系，这一直阻碍着体验设计领域的科学发展。多元线性回归分析是基本的统计学方法，一直在用研中活跃，但由于设计师外包了研究工作给用研，较少了解到多元线性回归方法可以用到体验设计的量化归因上。"/>
+    <script type="application/ld+json">
+        {
+            "description": "&lt;p&gt;无论体验度量还是设计价值的评估，体验设计界自来面临一个棘手的“归因问题”：设计的贡献值是多少？某因素对整体体验的影响程度如何？&lt;br&gt;由于比对的多个事物间仅被“定性”的判断为具有某种因果关系，难以量化且表述出固定的关系，这一直阻碍着体验设计领域的科学发展。多元线性回归分析是基本的统计学方法，一直在用研中活跃，但由于设计师外包了研究工作给用研，较少了解到多元线性回归方法可以用到体验设计的量化归因上。",
+            "author": { "@type": "Person", "name": "璞成" },
+            "@type": "BlogPosting",
+            "url": "http://example.com/2022/10/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%BD%92%E5%9B%A0/index.html",
+            "publisher": {
+            "@type": "Organization",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "http://example.comundefined"
+            },
+            "name": "璞成"
+            },
+            "headline": "基于多元线性回归的设计归因 | Design &amp; Latte",
+            "datePublished": "2022-10-22T15:46:15.401Z",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "http://example.com/2022/10/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%BD%92%E5%9B%A0/index.html"
+            },
+            "@context": "http://schema.org"
+        }
+    </script>
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1654266144177.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1654266144177.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            
+            
+        }
+        window.aomori_logo_typed_animated = false
+        window.aomori_search_algolia = false
+
+    </script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <a class="header-type-title" href="/">Design &amp; Latte</a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+            </div>
+            <div class="header-menu-social">
+                
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-cl9kug1ge0001lk8zg2n498g3" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      基于多元线性回归的设计归因
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2022-10-22T15:46:15.401Z" itemprop="datePublished">2022-10-22</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/%E6%80%9D%E8%80%83/">思考</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BA%A6%E9%87%8F/" rel="tag">度量</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8C%87%E6%A0%87/" rel="tag">指标</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <p>无论体验度量还是设计价值的评估，体验设计界自来面临一个棘手的“归因问题”：设计的贡献值是多少？某因素对整体体验的影响程度如何？<br>由于比对的多个事物间仅被“定性”的判断为具有某种因果关系，难以量化且表述出固定的关系，这一直阻碍着体验设计领域的科学发展。多元线性回归分析是基本的统计学方法，一直在用研中活跃，但由于设计师外包了研究工作给用研，较少了解到多元线性回归方法可以用到体验设计的量化归因上。<span id="more"></span><br>多元线性回归分析指，对“因变量”与存在因果关系的多个“自变量”进行关系描述分析，进而预测因变量。<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/10702248">链接</a> 多元线性回归分析方法，源于定性，又超越定性，正是体验度量或价值评估所需要的。由于这种描述关系是统计学意义上的，对样本量有要求，来逼近真实情况。</p>
+<h3 id="01-定性获取自变量"><a href="#01-定性获取自变量" class="headerlink" title="01 定性获取自变量"></a>01 定性获取自变量</h3><p>通过开放性问卷，获得相关人员对造成或影响某现象（因变量）的可能原因（自变量）分析反馈，综合汇总全部因素后，整理出一份自变量列表。定量的获取因变量、自变量的契合目标的样本量，并完成数据清洗以提高分析的有效性。<br>以某设计工具产品为例，取因变量——“NPS推荐值”，取多个自变量——“加载速度、界面美观度、易学性、文案质量、操作难度、订阅价格、易用性、易理解度”总 8 个指标。</p>
+<table>
+<thead>
+<tr>
+<th>NPS推荐值</th>
+<th>加载速度</th>
+<th>界面美观度</th>
+<th>易学性</th>
+<th>文案质量</th>
+<th>操作难度</th>
+<th>订阅价格</th>
+<th>易用性</th>
+<th>易理解度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+</tr>
+<tr>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+<td>xx</td>
+</tr>
+<tr>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+<td>……</td>
+</tr>
+</tbody></table>
+<h3 id="02-自变量校准（因子降维）"><a href="#02-自变量校准（因子降维）" class="headerlink" title="02 自变量校准（因子降维）"></a>02 自变量校准（因子降维）</h3><p>因子降维是一种数据处理操作，旨在从真实数据关系角度判断“自变量”与“因变量”是否具有严谨的正相关性，以及是否存在重复的“自变量”，方便剔除或进一步整合。<br>从上图可以发现，“文案质量”与“易理解度”，“操作难度”与“易用性”的数据区域重合度高，实际上只算一个“自变量”维度，择其一即可。</p>
+<h3 id="03-多元线性回归分析"><a href="#03-多元线性回归分析" class="headerlink" title="03 多元线性回归分析"></a>03 多元线性回归分析</h3><p>将矫正后的自变量与因变量重新输入计算机执行多元线性回归分析，则可拟合出它们之间的数学关系，该拟合关系受样本量，样本质量影响，越精准越能描述出准确的关系。（由于数据量大，需要借助计算机软件，如SPSS）<br><strong>y&#x3D;k*<em><strong>1</strong></em></strong>x<strong><strong>1</strong></strong>+k<strong><strong>2</strong>*<strong>x</strong></strong>2****+k<strong><strong>3</strong>*<strong>x</strong></strong>3****+ k<strong><strong>4</strong><em><strong>x</strong> ……<br>k值反映出该自变量对因变量的影响程度。这一方面可为我们设计决策指明方向，结合每个自变量的当前值的现状，确定发力的方向。如下是一份“优化意愿-满意度值”矩阵图表。可以明显发现“操作难度”、“文案质量”因子本身数值低，且优化意愿高，假设我们在某6个月周期内，预期提高 △xn的数值，结合kn的数值，进行量化计算：</em><em>△y</em>*</strong>n****&#x3D;△x<strong><strong>n</strong>*<strong>k</strong></strong>n****   &gt;  △y<strong><strong>m</strong></strong>&#x3D;△x<strong><strong>m</strong>*<strong>k</strong></strong>m**** ,**在决策上，则倾向于 n 自变量。这将为体验设计构建一项坚实判断基础，使相关工作有据可依，有条不紊。</p>
+<p>同理，我们可以将业务指标（如成交率、留存率、活跃度等）与体验指标挂钩，逐渐构建、优化出一套坚实的量化模型，设计价值的“效能”则可以被大致计算出来，为设计决策、资源获取都将带来帮助。本文仅阐述了相关原理及其在体验设计中运用关系，具体灵活实践不做赘述。</p>
+<p>（由于涉及到统计学方面专业知识，上述内容若存在遗漏或不妥之处，欢迎交流）</p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/2022/10/22/%E8%A1%8C%E4%B8%9A%E8%AE%A4%E7%9F%A5%E7%9A%84%E5%87%A0%E4%B8%AA%E8%A6%81%E7%B4%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          行业认知的几个要素
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=基于多元线性回归的设计归因 - Design & Latte&url=http%3A%2F%2Fexample.com%2F2022%2F10%2F22%2F%25E5%259F%25BA%25E4%25BA%258E%25E5%25A4%259A%25E5%2585%2583%25E7%25BA%25BF%25E6%2580%25A7%25E5%259B%259E%25E5%25BD%2592%25E7%259A%2584%25E8%25AE%25BE%25E8%25AE%25A1%25E5%25BD%2592%25E5%259B%25A0%2F">
+            <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=基于多元线性回归的设计归因 - Design & Latte&u=http%3A%2F%2Fexample.com%2F2022%2F10%2F22%2F%25E5%259F%25BA%25E4%25BA%258E%25E5%25A4%259A%25E5%2585%2583%25E7%25BA%25BF%25E6%2580%25A7%25E5%259B%259E%25E5%25BD%2592%25E7%259A%2584%25E8%25AE%25BE%25E8%25AE%25A1%25E5%25BD%2592%25E5%259B%25A0%2F">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=基于多元线性回归的设计归因 - Design & Latte&url=http://example.com/2022/10/22/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%BD%92%E5%9B%A0/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+            
+            <aside class="sidebar ">
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/22/%E4%BA%92%E5%8A%A8%E5%8F%99%E4%BA%8B%E7%9A%84%E6%9B%99%E5%85%89/">互动叙事的曙光</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/22/SaaS%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E9%A4%90%E9%A5%AE/">SaaS产品设计与餐饮</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/22/SaaS%E4%BA%A7%E5%93%81%E5%A2%9E%E8%B4%AD%E9%80%BB%E8%BE%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%8E%B0/">SaaS产品增购逻辑的设计体现</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/22/%E8%A2%AB%E5%BF%BD%E8%A7%86%E7%9A%84%E4%BA%A7%E5%93%81%E8%BD%AF%E6%9C%8D%E5%8A%A1/">被忽视的产品软服务</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/22/%E8%B7%A8%E7%95%8C%E6%8E%A2%E7%B4%A2%E4%BD%93%E9%AA%8C%E8%AE%BE%E8%AE%A1/">跨界探索体验设计</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/B%E7%AB%AF/" rel="tag">B端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaaS/" rel="tag">SaaS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%92%E5%8A%A8/" rel="tag">互动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%99%E4%BA%8B/" rel="tag">叙事</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%A6%E9%87%8F/" rel="tag">度量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E6%A0%87/" rel="tag">指标</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%85%E4%BA%8B/" rel="tag">故事</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%9D%E8%80%83/">思考</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B4%9E%E5%AF%9F/">洞察</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+            
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <!-- Please do not remove this -->
+    <!-- 开源不易，请勿删除 -->
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            Design &amp; Latte &copy; 2022<br>
+            Powered By Hexo · Theme By <a href="https://linhong.me/" target="_blank">Aomori</a> · <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Github</a>
+        </div>
+    </div>
+
+</footer>
+
+<script type="module" src="https://unpkg.com/ionicons@6.0.2/dist/ionicons/ionicons.esm.js"></script>
+
+
+
+
+
+
+<script src="/dist/build.js?1654266144177.js"></script>
+
+
+<script src="/dist/custom.js?1654266144177.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

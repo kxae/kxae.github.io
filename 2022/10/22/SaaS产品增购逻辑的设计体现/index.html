@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+    <title>SaaS产品增购逻辑的设计体现 | Design &amp; Latte</title>
+
+    <meta name="description" content="&lt;h3 id=&#34;01-增购逻辑&#34;&gt;&lt;a href=&#34;#01-增购逻辑&#34; class=&#34;headerlink&#34; title=&#34;01 增购逻辑&#34;&gt;&lt;/a&gt;01 增购逻辑&lt;/h3&gt;&lt;p&gt;「增购」是SaaS模式的一项重要逻辑，它使SaaS类产品估值高于传统软件售卖公司，市场上的客户总量几乎是动态固定的，尤其B端垂直领域，单纯依赖增量付费会在后期遭遇增长瓶颈，增购逻辑是“T型”的纵向发展，使一项产品服务在同一家企业内逐步“渗透”，最终覆盖其上下游各个业务触点。">
+    <meta name="keywords" content="">
+
+    
+
+    <meta property="og:locale" content="en" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content= "SaaS产品增购逻辑的设计体现 | Design &amp; Latte"  />
+    <meta property="og:description" content= "&lt;h3 id=&#34;01-增购逻辑&#34;&gt;&lt;a href=&#34;#01-增购逻辑&#34; class=&#34;headerlink&#34; title=&#34;01 增购逻辑&#34;&gt;&lt;/a&gt;01 增购逻辑&lt;/h3&gt;&lt;p&gt;「增购」是SaaS模式的一项重要逻辑，它使SaaS类产品估值高于传统软件售卖公司，市场上的客户总量几乎是动态固定的，尤其B端垂直领域，单纯依赖增量付费会在后期遭遇增长瓶颈，增购逻辑是“T型”的纵向发展，使一项产品服务在同一家企业内逐步“渗透”，最终覆盖其上下游各个业务触点。" />
+    <meta property="og:url" content="http://example.com/2022/10/22/SaaS%E4%BA%A7%E5%93%81%E5%A2%9E%E8%B4%AD%E9%80%BB%E8%BE%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%8E%B0/index.html" />
+    <meta property="og:site_name" content="" />
+    <meta property="article:author" content="璞成" />
+    <meta property="article:publisher" content="" />
+    <meta property="og:description" content="&lt;h3 id=&#34;01-增购逻辑&#34;&gt;&lt;a href=&#34;#01-增购逻辑&#34; class=&#34;headerlink&#34; title=&#34;01 增购逻辑&#34;&gt;&lt;/a&gt;01 增购逻辑&lt;/h3&gt;&lt;p&gt;「增购」是SaaS模式的一项重要逻辑，它使SaaS类产品估值高于传统软件售卖公司，市场上的客户总量几乎是动态固定的，尤其B端垂直领域，单纯依赖增量付费会在后期遭遇增长瓶颈，增购逻辑是“T型”的纵向发展，使一项产品服务在同一家企业内逐步“渗透”，最终覆盖其上下游各个业务触点。" />
+    <meta name="twitter:title" content="SaaS产品增购逻辑的设计体现 | Design &amp; Latte"/>
+    <meta name="twitter:description" content="&lt;h3 id=&#34;01-增购逻辑&#34;&gt;&lt;a href=&#34;#01-增购逻辑&#34; class=&#34;headerlink&#34; title=&#34;01 增购逻辑&#34;&gt;&lt;/a&gt;01 增购逻辑&lt;/h3&gt;&lt;p&gt;「增购」是SaaS模式的一项重要逻辑，它使SaaS类产品估值高于传统软件售卖公司，市场上的客户总量几乎是动态固定的，尤其B端垂直领域，单纯依赖增量付费会在后期遭遇增长瓶颈，增购逻辑是“T型”的纵向发展，使一项产品服务在同一家企业内逐步“渗透”，最终覆盖其上下游各个业务触点。"/>
+    <script type="application/ld+json">
+        {
+            "description": "&lt;h3 id=&#34;01-增购逻辑&#34;&gt;&lt;a href=&#34;#01-增购逻辑&#34; class=&#34;headerlink&#34; title=&#34;01 增购逻辑&#34;&gt;&lt;/a&gt;01 增购逻辑&lt;/h3&gt;&lt;p&gt;「增购」是SaaS模式的一项重要逻辑，它使SaaS类产品估值高于传统软件售卖公司，市场上的客户总量几乎是动态固定的，尤其B端垂直领域，单纯依赖增量付费会在后期遭遇增长瓶颈，增购逻辑是“T型”的纵向发展，使一项产品服务在同一家企业内逐步“渗透”，最终覆盖其上下游各个业务触点。",
+            "author": { "@type": "Person", "name": "璞成" },
+            "@type": "BlogPosting",
+            "url": "http://example.com/2022/10/22/SaaS%E4%BA%A7%E5%93%81%E5%A2%9E%E8%B4%AD%E9%80%BB%E8%BE%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%8E%B0/index.html",
+            "publisher": {
+            "@type": "Organization",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "http://example.comundefined"
+            },
+            "name": "璞成"
+            },
+            "headline": "SaaS产品增购逻辑的设计体现 | Design &amp; Latte",
+            "datePublished": "2022-10-22T15:47:10.346Z",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "http://example.com/2022/10/22/SaaS%E4%BA%A7%E5%93%81%E5%A2%9E%E8%B4%AD%E9%80%BB%E8%BE%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%8E%B0/index.html"
+            },
+            "@context": "http://schema.org"
+        }
+    </script>
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1654266144177.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1654266144177.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            
+            
+        }
+        window.aomori_logo_typed_animated = false
+        window.aomori_search_algolia = false
+
+    </script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <a class="header-type-title" href="/">Design &amp; Latte</a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+            </div>
+            <div class="header-menu-social">
+                
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-cl9kug1gg0004lk8z7vpd0eu9" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      SaaS产品增购逻辑的设计体现
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2022-10-22T15:47:10.346Z" itemprop="datePublished">2022-10-22</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/%E6%B4%9E%E5%AF%9F/">洞察</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SaaS/" rel="tag">SaaS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <h3 id="01-增购逻辑"><a href="#01-增购逻辑" class="headerlink" title="01 增购逻辑"></a>01 增购逻辑</h3><p>「增购」是SaaS模式的一项重要逻辑，它使SaaS类产品估值高于传统软件售卖公司，市场上的客户总量几乎是动态固定的，尤其B端垂直领域，单纯依赖增量付费会在后期遭遇增长瓶颈，增购逻辑是“T型”的纵向发展，使一项产品服务在同一家企业内逐步“渗透”，最终覆盖其上下游各个业务触点。<span id="more"></span><br>增购渗透首先要满足的是不同角色本位的工作诉求；再者关注其上下游的协作，打通连接关系使SaaS服务覆盖更多触点和场景；后者是我们常常忽视的部分，这种隐藏的协作关系，不像明确的工作任务那样容易识别和定位，因而阻碍用户们的协作，带来摩擦，使体验不畅。一些潜在的、创造性的「协作连接」甚至未被用户自己识别出来，产品设计人员如能洞察，将极大优化协作阻碍，使其正式成为主流工作方式，“更易于”连接上下游工作，为行业所提供的创造性解决方案，将增加企业增购的信心和动力。难点在于，非业内人员，在没有完全透彻理解用户当前工作现状下，也就难以洞察到潜在的解决方案。<br>我们需要描摹用户角色的协作关系，并结合用户定性反馈，进行分析，找到机会点。</p>
+<h3 id="02-基于角色的设计实践"><a href="#02-基于角色的设计实践" class="headerlink" title="02 基于角色的设计实践"></a>02 基于角色的设计实践</h3><p>如下为一次基于用户角色的用户连接案例 ，来阐明“连接点”的价值点撬动是如何工作的，以及产品设计人员如何介入进去。<br>[案例]：<br>用户反馈“我们需要通过“搜索”找到某种颜色的色卡”（图1），起初我们无法理解为什么需要搜索“色卡”，后来和行业专家详细沟通后，了解到用户在涂抹墙面的颜色时，目标很明确，他们需要直接找到对应的“色卡”。于是设计陷入困境，颜色色值是无法被搜索的，我们逐步认定这可能是一个伪需求，用户应该根据色卡的“名称”找色卡，而不是通过搜索颜色值。恰好当时我们正在做用户角色卡片的构建工作，结合该诉求，我们了解到用户为什么想要颜色值的背后协作原因。<br>[分析]：<br>1.硅藻泥墙面方案，通常会由“总部设计师”完成。<br>2.总部设计师单子太多，不想做重复性工作的工具人。<br>3.门店设计师通常通常没有很好的色彩感知设计能力。<br>4.门店设计师根据总部设计师的样板方案快速复刻即可。<br>因此，门店设计师为了快速复刻方案，需要根据样板间的墙面颜色值复刻到其他房间，但无法找到准确的“色卡”，故提出搜索色卡能力。<br>结合该工作流关系和诉求，我们快速给出了设计方案“支持设计师复制墙面颜色值”，用户通过“复制-粘贴”操作，实现色值的复刻分发。</p>
+<h3 id="03-连接杠杆的价值"><a href="#03-连接杠杆的价值" class="headerlink" title="03 连接杠杆的价值"></a>03 连接杠杆的价值</h3><p>对于具备高价值的“连接杠杆”，开发量越小，则ROI越高，一个依托于计算机系统的“色值复制粘贴”能力，优化的、撬动的是一个重要的协作关系，则能顺畅的打通两个角色的工作具有重要的意义。我们应该洞察到更多此类“连接杠杆”的机会点，当积累到一定量后，会完全或很大程度的改变用户工作方式，就会带来一定程度的“增购”。这种基于“连接关系”的增购非常稳固，单向发展且很难接受退化，同时能在行业领域内复制，逐渐建立起紧密的增购漏斗。</p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/2022/10/22/SaaS%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E9%A4%90%E9%A5%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          SaaS产品设计与餐饮
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/10/22/%E8%A2%AB%E5%BF%BD%E8%A7%86%E7%9A%84%E4%BA%A7%E5%93%81%E8%BD%AF%E6%9C%8D%E5%8A%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">被忽视的产品软服务</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=SaaS产品增购逻辑的设计体现 - Design & Latte&url=http%3A%2F%2Fexample.com%2F2022%2F10%2F22%2FSaaS%25E4%25BA%25A7%25E5%2593%2581%25E5%25A2%259E%25E8%25B4%25AD%25E9%2580%25BB%25E8%25BE%2591%25E7%259A%2584%25E8%25AE%25BE%25E8%25AE%25A1%25E4%25BD%2593%25E7%258E%25B0%2F">
+            <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=SaaS产品增购逻辑的设计体现 - Design & Latte&u=http%3A%2F%2Fexample.com%2F2022%2F10%2F22%2FSaaS%25E4%25BA%25A7%25E5%2593%2581%25E5%25A2%259E%25E8%25B4%25AD%25E9%2580%25BB%25E8%25BE%2591%25E7%259A%2584%25E8%25AE%25BE%25E8%25AE%25A1%25E4%25BD%2593%25E7%258E%25B0%2F">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=SaaS产品增购逻辑的设计体现 - Design & Latte&url=http://example.com/2022/10/22/SaaS%E4%BA%A7%E5%93%81%E5%A2%9E%E8%B4%AD%E9%80%BB%E8%BE%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%8E%B0/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+            
+            <aside class="sidebar ">
+                
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/22/%E4%BA%92%E5%8A%A8%E5%8F%99%E4%BA%8B%E7%9A%84%E6%9B%99%E5%85%89/">互动叙事的曙光</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/22/SaaS%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E9%A4%90%E9%A5%AE/">SaaS产品设计与餐饮</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/22/SaaS%E4%BA%A7%E5%93%81%E5%A2%9E%E8%B4%AD%E9%80%BB%E8%BE%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%BD%93%E7%8E%B0/">SaaS产品增购逻辑的设计体现</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/22/%E8%A2%AB%E5%BF%BD%E8%A7%86%E7%9A%84%E4%BA%A7%E5%93%81%E8%BD%AF%E6%9C%8D%E5%8A%A1/">被忽视的产品软服务</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/22/%E8%B7%A8%E7%95%8C%E6%8E%A2%E7%B4%A2%E4%BD%93%E9%AA%8C%E8%AE%BE%E8%AE%A1/">跨界探索体验设计</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/B%E7%AB%AF/" rel="tag">B端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SaaS/" rel="tag">SaaS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%92%E5%8A%A8/" rel="tag">互动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%99%E4%BA%8B/" rel="tag">叙事</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%A6%E9%87%8F/" rel="tag">度量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E6%A0%87/" rel="tag">指标</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%85%E4%BA%8B/" rel="tag">故事</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E5%BF%B5/" rel="tag">理念</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%9D%E8%80%83/">思考</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B4%9E%E5%AF%9F/">洞察</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+            
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <!-- Please do not remove this -->
+    <!-- 开源不易，请勿删除 -->
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            Design &amp; Latte &copy; 2022<br>
+            Powered By Hexo · Theme By <a href="https://linhong.me/" target="_blank">Aomori</a> · <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Github</a>
+        </div>
+    </div>
+
+</footer>
+
+<script type="module" src="https://unpkg.com/ionicons@6.0.2/dist/ionicons/ionicons.esm.js"></script>
+
+
+
+
+
+
+<script src="/dist/build.js?1654266144177.js"></script>
+
+
+<script src="/dist/custom.js?1654266144177.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
